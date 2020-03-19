@@ -1,3 +1,7 @@
+<span style="float: right">
+  Welcome, <%= current_user.email %>
+</span>
+
 <h1>Show List</h1>
 
 Search <input type="text" value="" id="searchBox" placeholder="Search by Show or Channel"/> 
@@ -23,7 +27,11 @@ Search <input type="text" value="" id="searchBox" placeholder="Search by Show or
       <td><%= show.duration_in_minutes %></td>
       <td><%= show.channel.name %></td>
       <td>
-        <span id=<%= "favIcon#{show.id}" %> class=<%= show.is_favourite ? 'fav' : 'nonfav' %> onclick="addAsFav(<%= show.id %>)"><i class="fas fa-heart"></i></span>
+        <% if @fav_show.include? show.id %>
+          <span  id=<%= "favIcon#{show.id}" %>  onclick="addAsFav(<%= show.id %>)" class="fav" ><i class="fas fa-heart"></i></span>
+        <% else %>
+          <span  id=<%= "favIcon#{show.id}" %>  onclick="addAsFav(<%= show.id %>)" class="nonfav" ><i class="fas fa-heart"></i></span>  
+        <% end %>
       </td>
     </tr>
   <% end %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   root 'landings#index'
 
   post 'show/:show_id/favourite' => 'show#add_as_favourite'

@@ -14,7 +14,9 @@ class LandingsController < ApplicationController
       all_shows = Show.all
     end
 
+    fav_show_obj = UserShow.where(:user_id => current_user.id)
+
+    @fav_show = fav_show_obj.map(&:show_id)
     @shows = all_shows.uniq
-    
   end
 end
