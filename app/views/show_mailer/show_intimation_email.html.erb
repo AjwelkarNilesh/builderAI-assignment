@@ -4,9 +4,9 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hi <%= @user.name %></h1>
+    <h1>Hi <%= @user.email %></h1>
     <p>
-      Sample mail sent using smtp.
+      Your favourite show <%= @show.name %> is about to start in 30 minutes on <%= @show.channel %> at <%= @show.start_time %>
     </p>
   </body>
 </html>
