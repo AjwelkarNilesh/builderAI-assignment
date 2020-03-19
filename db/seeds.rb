@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+10.times.each do |i|
+  channel = Channel.create(:name => "Channel#{i+1}")
+  10.times.each do |j|
+    channel.shows.create(:name => "#{channel.name}Show#{j+1}", :start_time => j, :duration_in_minutes => 60, :ratings => rand(0..5))
+  end
+end
