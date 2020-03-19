@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2020_03_19_035637) do
     t.string "start_time"
     t.integer "duration_in_minutes"
     t.integer "ratings"
+    t.boolean "is_favourite", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["channel_id"], name: "index_shows_on_channel_id"

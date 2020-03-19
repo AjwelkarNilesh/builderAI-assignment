@@ -6,6 +6,7 @@ class CreateShows < ActiveRecord::Migration[5.2]
       t.string :start_time
       t.integer :duration_in_minutes
       t.integer :ratings
+      t.boolean :is_favourite, default: false
       t.timestamps
     end
   end

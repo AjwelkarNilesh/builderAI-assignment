@@ -1,2 +1,65 @@
-<h1>Landings#index</h1>
-<p>Find me in app/views/landings/index.html.erb</p>
+<h1>Show List</h1>
+
+Search <input type="text" value="" id="searchBox" placeholder="Search by Show or Channel"/> 
+<input type="button" value="Go" id="searchButton"/>
+<input type="button" value="Show All" id="showAll"/>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Show Name</th>
+      <th>Show Start time</th>
+      <th>Duration in minutes</th>
+      <th>Channel Name</th>
+      <th>Favourite</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @shows.each do |show| %>
+    <tr>
+      <td><%= show.name %></td>
+      <td><%= show.start_time %></td>
+      <td><%= show.duration_in_minutes %></td>
+      <td><%= show.channel.name %></td>
+      <td>
+        <span id=<%= "favIcon#{show.id}" %> class=<%= show.is_favourite ? 'fav' : 'nonfav' %> onclick="addAsFav(<%= show.id %>)"><i class="fas fa-heart"></i></span>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<style type="text/css">
+  .fav {color:red;}
+  .nonfav {color:grey;}
+</style>
+
+<script type="text/javascript">
+  
+  $("#searchButton").click(function(){
+    if($("#searchBox").val() != "") {
+      var url = document.location.origin + "?search=" + $("#searchBox").val();
+      document.location = url;
+    }
+  });
+
+  $("#showAll").click(function(){
+    document.location = document.location.origin
+  });
+
+  function addAsFav(showId) {
+
+    $.ajax({
+      type: "POST",
+      url: "show/" + showId + "/favourite",
+      complete: function(data) {
+        if(data["responseText"] == "success") {
+          $("#favIcon" + showId).removeClass("nonfav").addClass("fav");
+        }
+      }
+    });
+  }
+
+</script>
